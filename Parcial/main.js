@@ -25,30 +25,38 @@ Creacion de objeto mesh, esfera.
 
 var R = 1; // radio de la esfera
 
-var geometrysphere = new THREE.SphereGeometry( R, 20, 10);
-var material = new THREE.MeshBasicMaterial( {color: 0x4404f6, wireframe:true} );
-var esfera = new THREE.Line( geometrysphere, material );
+var geometrysphere = new THREE.SphereGeometry( R, 12, 13);
+var material = new THREE.MeshMatcapMaterial( {color: 0xfdebba} );
+var esfera = new THREE.Mesh( geometrysphere, material );
+
+/*
+Parametrizacion de variables globales
+*/
+
+Sx = 0.5,  //Escala en x
+Sy = 0.5; // Escala en y
+Sz = 3; // Escala en Z
+Rx = -Math.PI/4; // angulo en radianes en x
+Ry = Math.PI/4; // angulo en radianes y
+Rz = 0; // angulo en radianes  Z
 
 
-Sx = 1, 
-Sy = 0,5;
-Sz = 3;
-Rx = Math.PI /2;
-Ry = Math.PI;
-Rz = Math.PI / 4;
+Tx = 1.5; // traslacioon en x
+Ty = 2; // traslacioon en y
+Tz = 1.5; // traslacioon en z
 
 
+/**
+ * Llamado de funciones de transformacion.
+ * Lamadas con la geometria del objeto.
+ */
+EscaladoReal(geometrysphere,Sx,Sy,Sz); //funcion escalado
+RotacionReal(geometrysphere,Rx,Ry,Rz); // funcion rotado
+TraslacionReal(geometrysphere, Tx, Ty, Tz); // funcion traslacion
 
-EscaladoReal(geometrysphere,Sx,Sy,Sz);
-//RotacionReal(esfera,Rx,Ry,Rz);
-
-
-
-
-
-
-
+//Adicionar a esfera a la escena
 scene.add( esfera );
+
 
 const light = new THREE.DirectionalLight(0xffffff, 1);
 light.position.set(-1, 2, 4);
